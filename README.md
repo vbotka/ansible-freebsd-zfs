@@ -72,5 +72,5 @@ References
 - [FreeBSD handbook: Chapter 19. ZFS](http://www.freebsd.org/doc/handbook/zfs.html)
 - [FreeBSD wiki: ZFS](https://wiki.freebsd.org/ZFS)
 - [FreeBSD wiki: ZFS Quick Start Guide](https://wiki.freebsd.org/ZFSQuickStartGuide)
-- [FreeBSD wiki: ZFS Tuning Guide](https://wiki.freebsd.org/ZFSTuningGuide
+- [FreeBSD wiki: ZFS Tuning Guide](https://wiki.freebsd.org/ZFSTuningGuide)
 - [FreeBSD wiki: Category ZFS](https://wiki.freebsd.org/CategoryZfs)
