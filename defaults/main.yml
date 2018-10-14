@@ -1,0 +1,14 @@
+---
+# defaults for freebsd_zfs
+
+fzfs_enable: false
+fzfs_debug: false
+fzfs_backup_conf: no
+fzfs_facts_recurse: yes
+fzfs_sysctl: []
+fzfs_rcconf: []
+fzfs_datasets: []
+fzfs_manage: []
+
+# EOF
+...

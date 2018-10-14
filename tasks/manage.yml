@@ -1,0 +1,12 @@
+---
+
+- name: "manage: Manage zfs"
+  zfs:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    origin: "{{ item.origin|default('') }}"
+    extra_zfs_properties: "{{ item.extra_zfs_properties|default({}) }}"
+  loop: "{{ fzfs_manage }}"
+
+# EOF
+...

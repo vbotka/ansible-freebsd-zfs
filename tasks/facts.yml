@@ -1,0 +1,39 @@
+---
+
+- name: "facts: Run zpool_facts"
+  zpool_facts:
+
+- name: "facts: Debug ansible_zfs_pools"
+  debug:
+    var: ansible_zfs_pools
+  when: fzfs_debug
+
+- name: "facts: Debug list pools"
+  debug:
+    msg: "name [ {{ item.name }} ], size [ {{ item.size }} ], free [ {{ item.free }} ]"
+  loop: "{{ ansible_zfs_pools }}"
+  when: fzfs_debug
+
+- name: "facts: Run zfs_facts"
+  zfs_facts:
+    name: "{{ item.name }}"
+    recurse: "{{ fzfs_facts_recurse }}"
+  loop: "{{ ansible_zfs_pools }}"
+  register: ansible_zfs_ds
+
+- name: "facts: Debug ansible_zfs_ds"
+  debug:
+    var: ansible_zfs_ds
+  when: fzfs_debug
+
+- name: "facts: Get list of datasets"
+  include_tasks: facts_include_1.yml
+  loop: "{{ ansible_zfs_ds.results }}"
+
+- name: "facts: Debug list of datasets"
+  debug:
+    var: fzfs_datasets
+  when: fzfs_debug
+
+# EOF
+...

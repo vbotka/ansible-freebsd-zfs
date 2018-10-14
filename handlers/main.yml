@@ -1,0 +1,23 @@
+---
+# handlers for freebsd-zfs
+
+- name: enable and start zfs
+  service:
+    name: zfs
+    state: started
+    enabled: yes
+
+- name: disable and stop zfs
+  service:
+    name: zfs
+    state: stopped
+    enabled: no
+
+- name: restart zfs
+  service:
+    name: zfs
+    state: restarted
+  when: fzfs_enable
+
+# EOF
+...

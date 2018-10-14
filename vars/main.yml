@@ -1,0 +1,16 @@
+---
+# vars for freebsd_zfs
+
+#fzfs_enable: true
+#fzfs_debug: true
+#fzfs_backup_conf: yes
+#fzfs_facts_recurse: yes
+#fzfs_sysctl:
+#  - { name: "vfs.zfs.prefetch_disable", value: "0" }
+#fzfs_rcconf: []
+#fzfs_datasets: []
+#fzfs_manage:
+#  - { name: zroot/test1, state: present, extra_zfs_properties: { compression: on }}
+
+# EOF
+...

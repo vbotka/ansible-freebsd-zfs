@@ -1,0 +1,38 @@
+---
+
+- name: "rcconf: Configure ZFS in /etc/rc.conf"
+  lineinfile:
+    dest: "/etc/rc.conf"
+    regexp: "^{{ item.regexp }}"
+    line: "{{ item.regexp }}={{ item.line }}"
+    backup: "{{ fzfs_backup_conf }}"
+  loop: "{{ fzfs_rcconf }}"
+  notify: restart zfs
+
+- name: "rcconf: Enable and Start zfs"
+  lineinfile:
+    dest: "/etc/rc.conf"
+    regexp: "^zfs_enable"
+    line: "zfs_enable=\"YES\""
+    backup: "{{ fzfs_backup_conf }}"
+  when: fzfs_enable
+  notify: enable and start zfs
+
+- name: "rcconf: Disable and Stop zfs"
+  lineinfile:
+    dest: "/etc/rc.conf"
+    regexp: "^zfs_enable"
+    line: "zfs_enable=\"NO\""
+    backup: "{{ fzfs_backup_conf }}"
+  when: not fzfs_enable
+  notify: disable and stop zfs
+
+- name: "rcconf: flush handlers"
+  meta: flush_handlers
+
+- name: "rcconf: Exit play if ZFS is not enabled"
+  meta: end_play
+  when: not fzfs_enable
+
+# EOF
+...

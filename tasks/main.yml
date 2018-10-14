@@ -1,0 +1,27 @@
+---
+# tasks for freebsd_zfs
+
+- import_tasks: debug.yml
+  when: fzfs_debug
+  tags: fzfs_debug
+
+- name: Include role vbotka.freebsd_postinstall task sysctl
+  block:
+    - set_fact:
+        fp_sysctl: "{{ fp_sysctl }} + {{ fzfs_sysctl }}" 
+    - include_role:
+        name: vbotka.freebsd_postinstall
+        tasks_from: sysctl.yml
+  tags: fzfs_sysctl
+
+- import_tasks: rcconf.yml
+  tags: fzfs_rcconf
+
+- import_tasks: facts.yml
+  tags: fzfs_facts
+
+- import_tasks: manage.yml
+  tags: fzfs_manage
+
+# EOF
+...
