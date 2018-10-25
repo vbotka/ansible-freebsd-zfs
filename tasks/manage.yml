@@ -1,12 +1,21 @@
 ---
 
-- name: "manage: Manage zfs"
+- name: "manage: Manage zfs."
   zfs:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
     origin: "{{ item.origin|default('') }}"
     extra_zfs_properties: "{{ item.extra_zfs_properties|default({}) }}"
   loop: "{{ fzfs_manage }}"
+
+- name: "manage: Set mode and ownership of zfs mountpoints."
+  file:
+    state: directory
+    path: "{{ item.mountpoint }}"
+    owner: "{{ item.owner|default(omit) }}"
+    group: "{{ item.group|default(omit) }}"
+    mode: "{{ item.mode|default(omit) }}"
+  loop: "{{ fzfs_mountpoints }}"
 
 # EOF
 ...

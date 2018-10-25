@@ -9,6 +9,7 @@ fzfs_sysctl: []
 fzfs_rcconf: []
 fzfs_datasets: []
 fzfs_manage: []
+fzfs_mountpoints: []
 
 # EOF
 ...
