@@ -3,7 +3,9 @@
 
 - import_tasks: debug.yml
   when: fzfs_debug
-  tags: fzfs_debug
+  tags:
+    - always
+    - fzfs_debug
 
 - name: Include role vbotka.freebsd_postinstall task sysctl
   block:
