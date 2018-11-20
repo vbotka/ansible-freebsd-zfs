@@ -4,7 +4,7 @@
   lineinfile:
     dest: "/etc/rc.conf"
     regexp: "^{{ item.regexp }}"
-    line: "{{ item.regexp }}={{ item.line }}"
+    line: "{{ item.regexp }}={{ item.val }}"
     backup: "{{ fzfs_backup_conf }}"
   loop: "{{ fzfs_rcconf }}"
   notify: restart zfs

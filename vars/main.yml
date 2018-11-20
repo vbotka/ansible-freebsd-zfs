@@ -1,14 +1,14 @@
 ---
 # vars for freebsd_zfs
 
-#fzfs_enable: true
-#fzfs_debug: true
-#fzfs_backup_conf: no
-#fzfs_rcconf: []
-#fzfs_datasets: []
-#fzfs_sysctl:
+# fzfs_enable: true
+# fzfs_debug: true
+# fzfs_backup_conf: no
+# fzfs_rcconf: []
+# fzfs_datasets: []
+# fzfs_sysctl:
 #  - { name: vfs.zfs.prefetch_disable, value: 0 }
-#fzfs_manage:
+# fzfs_manage:
 #  - name: zroot/test1
 #    state: present
 #    extra_zfs_properties:
@@ -18,7 +18,7 @@
 #    extra_zfs_properties:
 #      compression: on
 #      mountpoint: /local/jails
-#fzfs_mountpoints:
+# fzfs_mountpoints:
 #  - mountpoint: /local/jails
 #    owner: root
 #    group: wheel
