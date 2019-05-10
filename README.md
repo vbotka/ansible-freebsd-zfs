@@ -1,25 +1,21 @@
-freebsd_zfs
-===========
+# freebsd_zfs
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-freebsd-zfs.svg?branch=master)](https://travis-ci.org/vbotka/ansible-freebsd-zfs)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_zfs/) FreeBSD. Configure ZFS.
 
 
-Requirements
-------------
+## Requirements
 
 - [vbotka.freebsd_postinstall](https://galaxy.ansible.com/vbotka/freebsd_postinstall)
 
 
-Variables
----------
+## Variables
 
 Review defaults and examples in vars.
 
 
-Workflow
---------
+## Workflow
 
 1) Change shell to /bin/sh.
 
@@ -54,20 +50,17 @@ cat freebsd-zfs.yml
 ansible-playbook freebsd-zfs.yml
 ```
 
-License
--------
+## License
 
 [![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
 
 
-Author Information
-------------------
+## Author Information
 
 [Vladimir Botka](https://botka.link)
 
 
-References
-----------
+## References
 
 - [FreeBSD handbook: Chapter 19. ZFS](http://www.freebsd.org/doc/handbook/zfs.html)
 - [FreeBSD wiki: ZFS](https://wiki.freebsd.org/ZFS)

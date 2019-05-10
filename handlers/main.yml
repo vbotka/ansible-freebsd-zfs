@@ -1,5 +1,5 @@
 ---
-# handlers for freebsd-zfs
+# handlers for freebsd_zfs
 
 - name: enable and start zfs
   service:
@@ -14,10 +14,10 @@
     enabled: no
 
 - name: restart zfs
+  when: fzfs_enable
   service:
     name: zfs
     state: restarted
-  when: fzfs_enable
 
 # EOF
 ...
