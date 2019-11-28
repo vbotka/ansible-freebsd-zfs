@@ -5,16 +5,16 @@
   service:
     name: zfs
     state: started
-    enabled: yes
+    enabled: true
 
 - name: disable and stop zfs
   service:
     name: zfs
     state: stopped
-    enabled: no
+    enabled: false
 
 - name: restart zfs
-  when: fzfs_enable
+  when: fzfs_enable|bool
   service:
     name: zfs
     state: restarted

@@ -3,8 +3,8 @@
 
 fzfs_enable: false
 fzfs_debug: false
-fzfs_backup_conf: no
-fzfs_facts_recurse: yes
+fzfs_backup_conf: false
+fzfs_facts_recurse: true
 fzfs_sysctl: []
 fzfs_rcconf: []
 fzfs_datasets: []

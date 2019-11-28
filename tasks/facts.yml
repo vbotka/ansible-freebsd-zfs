@@ -4,14 +4,14 @@
   zpool_facts:
 
 - name: "facts: Debug ansible_zfs_pools"
-  when: fzfs_debug
+  when: fzfs_debug|bool
   debug:
     var: ansible_zfs_pools
 
 - name: "facts: Debug list pools"
-  when: fzfs_debug
+  when: fzfs_debug|bool
   debug:
-    msg: "name [ {{ item.name }} ], size [ {{ item.size }} ], free [ {{ item.free }} ]"
+    msg: "name [{{ item.name }}], size [{{ item.size }}], free [{{ item.free }}]"
   loop: "{{ ansible_zfs_pools }}"
 
 - name: "facts: Run zfs_facts"
@@ -22,7 +22,7 @@
   register: ansible_zfs_ds
 
 - name: "facts: Debug ansible_zfs_ds"
-  when: fzfs_debug
+  when: fzfs_debug|bool
   debug:
     var: ansible_zfs_ds
 

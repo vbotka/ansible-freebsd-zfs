@@ -10,7 +10,7 @@
   notify: restart zfs
 
 - name: "rcconf: Enable and Start zfs"
-  when: fzfs_enable
+  when: fzfs_enable|bool
   lineinfile:
     dest: "/etc/rc.conf"
     regexp: "^\\s*zfs_enable\\s*="
@@ -19,7 +19,7 @@
   notify: enable and start zfs
 
 - name: "rcconf: Disable and Stop zfs"
-  when: not fzfs_enable
+  when: not fzfs_enable|bool
   lineinfile:
     dest: "/etc/rc.conf"
     regexp: "^\\s*zfs_enable\\s*="
@@ -32,7 +32,7 @@
 
 - name: "rcconf: Exit play if ZFS is not enabled"
   meta: end_play
-  when: not fzfs_enable
+  when: not fzfs_enable|bool
 
 # EOF
 ...

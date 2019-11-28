@@ -3,26 +3,26 @@
 - name: "FreeBSD ZFS Debug."
   vars:
     msg: |
-         ansible_architecture [ {{ ansible_architecture }} ]
-         ansible_os_family [ {{ ansible_os_family }} ]
-         ansible_distribution [ {{ ansible_distribution }} ]
-         ansible_distribution_major_version [ {{ ansible_distribution_major_version }} ]
-         ansible_distribution_version [ {{ ansible_distribution_version }} ]
-         ansible_distribution_release [ {{ ansible_distribution_release }} ]
+         ansible_architecture [{{ ansible_architecture }}]
+         ansible_os_family [{{ ansible_os_family }}]
+         ansible_distribution [{{ ansible_distribution }}]
+         ansible_distribution_major_version [{{ ansible_distribution_major_version }}]
+         ansible_distribution_version [{{ ansible_distribution_version }}]
+         ansible_distribution_release [{{ ansible_distribution_release }}]
 
-         fzfs_enable [ {{ fzfs_enable }} ]
-         fzfs_backup_conf [ {{ fzfs_backup_conf }} ]
-         fzfs_facts_recurse [ {{ fzfs_facts_recurse }} ]
+         fzfs_enable [{{ fzfs_enable }}]
+         fzfs_backup_conf [{{ fzfs_backup_conf }}]
+         fzfs_facts_recurse [{{ fzfs_facts_recurse }}]
          fzfs_sysctl
-         {{ fzfs_sysctl | to_yaml }}
+         {{ fzfs_sysctl|to_yaml }}
          fzfs_rcconf
-         {{ fzfs_rcconf | to_yaml }}
+         {{ fzfs_rcconf|to_yaml }}
          fzfs_datasets
-         {{ fzfs_datasets | to_yaml }}
+         {{ fzfs_datasets|to_yaml }}
          fzfs_manage
-         {{ fzfs_manage | to_yaml }}
+         {{ fzfs_manage|to_yaml }}
          fzfs_mountpoints
-         {{ fzfs_mountpoints | to_yaml }}
+         {{ fzfs_mountpoints|to_yaml }}
 
   debug:
     msg: "{{ msg.split('\n') }}"
