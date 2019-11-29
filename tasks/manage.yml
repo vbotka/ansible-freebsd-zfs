@@ -16,6 +16,7 @@
     group: "{{ item.group|default(omit) }}"
     mode: "{{ item.mode|default(omit) }}"
   loop: "{{ fzfs_mountpoints }}"
+  notify: mount all zfs
 
 # EOF
 ...

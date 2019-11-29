@@ -13,6 +13,7 @@
          fzfs_enable [{{ fzfs_enable }}]
          fzfs_backup_conf [{{ fzfs_backup_conf }}]
          fzfs_facts_recurse [{{ fzfs_facts_recurse }}]
+         fzfs_mount_all [{{ fzfs_mount_all }}]
          fzfs_sysctl
          {{ fzfs_sysctl|to_yaml }}
          fzfs_rcconf

@@ -19,5 +19,9 @@
     name: zfs
     state: restarted
 
+- name: mount all zfs
+  when: fzfs_mount_all|bool
+  command: zfs mount -a
+
 # EOF
 ...
