@@ -3,7 +3,7 @@
 - name: "rcconf: Configure ZFS in /etc/rc.conf"
   lineinfile:
     dest: "/etc/rc.conf"
-    regexp: "^\\s*{{ item.regexp }}\\s*="
+    regexp: "^\\s*{{ item.regexp }}\\s*=\\s*(.*)$"
     line: "{{ item.regexp }}={{ item.val }}"
     backup: "{{ fzfs_backup_conf }}"
   loop: "{{ fzfs_rcconf }}"
@@ -13,7 +13,7 @@
   when: fzfs_enable|bool
   lineinfile:
     dest: "/etc/rc.conf"
-    regexp: "^\\s*zfs_enable\\s*="
+    regexp: "^\\s*zfs_enable\\s*=\\s*(.*)$"
     line: "zfs_enable=\"YES\""
     backup: "{{ fzfs_backup_conf }}"
   notify: enable and start zfs
@@ -22,7 +22,7 @@
   when: not fzfs_enable|bool
   lineinfile:
     dest: "/etc/rc.conf"
-    regexp: "^\\s*zfs_enable\\s*="
+    regexp: "^\\s*zfs_enable\\s*=\\s*(.*)$"
     line: "zfs_enable=\"NO\""
     backup: "{{ fzfs_backup_conf }}"
   notify: disable and stop zfs

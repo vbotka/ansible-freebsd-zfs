@@ -31,7 +31,7 @@
   loop: "{{ ansible_zfs_ds.results }}"
 
 - name: "facts: Debug list of datasets"
-  when: fzfs_debug
+  when: fzfs_debug|bool
   debug:
     var: fzfs_datasets
 

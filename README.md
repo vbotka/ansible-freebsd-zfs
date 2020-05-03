@@ -4,6 +4,8 @@
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_zfs/) FreeBSD. Configure ZFS.
 
+Please feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-freebsd-zfs/issues). Contributions are welcome.
+
 
 ## Requirements
 
@@ -17,47 +19,38 @@ Review defaults and examples in vars.
 
 ## Workflow
 
-1) Change shell to /bin/sh.
+1) Change shell to /bin/sh
 
 ```
-ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 'sudo pw usermod user -s /bin/sh'
+shell> ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 'sudo pw usermod user -s /bin/sh'
 ```
 
-2) Install role.
+2) Install role
 
 ```
-ansible-galaxy install vbotka.freebsd_zfs
+shell> ansible-galaxy install vbotka.freebsd_zfs
 ```
 
-3) Fit variables.
+3) Fit variables
 
 ```
-editor vbotka.freebsd_zfs/vars/main.yml
+shell> editor vbotka.freebsd_zfs/vars/main.yml
 ```
 
-4) Create playbook.
+4) Create playbook
 
 ```
-cat freebsd-zfs.yml
+shell> cat freebsd-zfs.yml
 - hosts: host
   roles:
     - vbotka.freebsd_zfs
 ```
 
-5) Configure the system.
+5) Configure the system
 
 ```
-ansible-playbook freebsd-zfs.yml
+shell> ansible-playbook freebsd-zfs.yml
 ```
-
-## License
-
-[![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
-
-
-## Author Information
-
-[Vladimir Botka](https://botka.link)
 
 
 ## References
@@ -67,3 +60,13 @@ ansible-playbook freebsd-zfs.yml
 - [FreeBSD wiki: ZFS Quick Start Guide](https://wiki.freebsd.org/ZFSQuickStartGuide)
 - [FreeBSD wiki: ZFS Tuning Guide](https://wiki.freebsd.org/ZFSTuningGuide)
 - [FreeBSD wiki: Category ZFS](https://wiki.freebsd.org/CategoryZfs)
+
+
+## License
+
+[![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
+
+
+## Author Information
+
+[Vladimir Botka](https://botka.link)
