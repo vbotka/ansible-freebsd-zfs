@@ -2,8 +2,8 @@
 
 - name: "rcconf: Configure ZFS in /etc/rc.conf"
   lineinfile:
-    dest: "/etc/rc.conf"
-    regexp: "^\\s*{{ item.regexp }}\\s*=\\s*(.*)$"
+    dest: /etc/rc.conf
+    regexp: '^\s*{{ item.regexp }}\s*=(.*)$'
     line: "{{ item.regexp }}={{ item.val }}"
     backup: "{{ fzfs_backup_conf }}"
   loop: "{{ fzfs_rcconf }}"
@@ -12,18 +12,18 @@
 - name: "rcconf: Enable and Start zfs"
   when: fzfs_enable|bool
   lineinfile:
-    dest: "/etc/rc.conf"
-    regexp: "^\\s*zfs_enable\\s*=\\s*(.*)$"
-    line: "zfs_enable=\"YES\""
+    dest: /etc/rc.conf
+    regexp: '^\s*zfs_enable\s*=(.*)$'
+    line: 'zfs_enable="YES"'
     backup: "{{ fzfs_backup_conf }}"
   notify: enable and start zfs
 
 - name: "rcconf: Disable and Stop zfs"
   when: not fzfs_enable|bool
   lineinfile:
-    dest: "/etc/rc.conf"
-    regexp: "^\\s*zfs_enable\\s*=\\s*(.*)$"
-    line: "zfs_enable=\"NO\""
+    dest: /etc/rc.conf
+    regexp: '^\s*zfs_enable\s*=(.*)$'
+    line: 'zfs_enable="NO"'
     backup: "{{ fzfs_backup_conf }}"
   notify: disable and stop zfs
 

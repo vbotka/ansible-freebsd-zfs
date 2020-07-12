@@ -1,10 +1,6 @@
 ---
 # tasks for freebsd_zfs
 
-- import_tasks: debug.yml
-  when: fzfs_debug|bool
-  tags: [always, fzfs_debug]
-
 - name: Include role vbotka.freebsd_postinstall task sysctl
   block:
     - name: Concatenate fp_sysctl and fzfs_sysctl
@@ -15,6 +11,10 @@
         name: vbotka.freebsd_postinstall
         tasks_from: sysctl.yml
   tags: fzfs_sysctl
+
+- import_tasks: debug.yml
+  when: fzfs_debug|bool
+  tags: [always, fzfs_debug]
 
 - import_tasks: rcconf.yml
   tags: fzfs_rcconf

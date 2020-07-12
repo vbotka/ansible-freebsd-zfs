@@ -1,6 +1,6 @@
 ---
 
-- name: "FreeBSD ZFS Debug."
+- name: Debug
   vars:
     msg: |
          ansible_architecture [{{ ansible_architecture }}]
@@ -25,9 +25,11 @@
          {{ fzfs_manage|to_yaml }}
          fzfs_mountpoints
          {{ fzfs_mountpoints|to_yaml }}
+         fp_sysctl
+         {{ fp_sysctl|to_yaml }}
 
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
 
 # EOF
 ...
