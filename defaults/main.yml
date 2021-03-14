@@ -6,11 +6,13 @@ fzfs_debug: false
 fzfs_backup_conf: false
 fzfs_facts_recurse: true
 fzfs_mount_all: true
-fzfs_sysctl: []
 fzfs_rcconf: []
 fzfs_datasets: []
 fzfs_manage: []
 fzfs_mountpoints: []
+
+# Unify sysctl with the role vbotka.freebsd_postinstall
+fzfs_sysctl: "{{ fp_sysctl|default([]) }}"
 
 # EOF
 ...

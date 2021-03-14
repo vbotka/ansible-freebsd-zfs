@@ -3,9 +3,9 @@
 
 - name: Include role vbotka.freebsd_postinstall task sysctl
   block:
-    - name: Concatenate fp_sysctl and fzfs_sysctl
+    - name: Set kernel state fzfs_sysctl
       set_fact:
-        fp_sysctl: "{{ fp_sysctl|default([]) }} + {{ fzfs_sysctl }}"
+        fp_sysctl: "{{ fzfs_sysctl }}"
     - name: Include vbotka.freebsd_postinstall sysctl
       include_role:
         name: vbotka.freebsd_postinstall
