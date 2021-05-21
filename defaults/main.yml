@@ -12,7 +12,7 @@ fzfs_manage: []
 fzfs_mountpoints: []
 
 # Unify sysctl with the role vbotka.freebsd_postinstall
-fzfs_sysctl: "{{ fp_sysctl|default([]) }}"
+fzfs_sysctl_conf: "{{ fp_sysctl_conf|default([]) }}"
 
 # EOF
 ...

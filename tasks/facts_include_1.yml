@@ -1,12 +1,11 @@
 ---
 
 - name: "facts:facts_include_1: Create list of datasets"
-  set_fact:
+  ansible.builtin.set_fact:
     fzfs_datasets: >
-      {{ fzfs_datasets + [{ 'pool':item.name,
-                            'name':data_set.name,
-                            'mountpoint':data_set.mountpoint|default('NONE')
-                          }] }}
+      {{ fzfs_datasets + [{'pool': item.name,
+                           'name': data_set.name,
+                           'mountpoint': data_set.mountpoint|default('NONE')}] }}
   loop: "{{ item.ansible_facts.ansible_zfs_datasets }}"
   loop_control:
     loop_var: data_set

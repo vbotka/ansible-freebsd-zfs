@@ -11,7 +11,13 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 
 ## Requirements
 
-- [vbotka.freebsd_postinstall](https://galaxy.ansible.com/vbotka/freebsd_postinstall)
+### Roles
+
+* [vbotka.freebsd_postinstall](https://galaxy.ansible.com/vbotka/freebsd_postinstall)
+
+### Collections
+
+* community.general
 
 
 ## Variables
