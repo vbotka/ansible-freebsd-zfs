@@ -16,4 +16,6 @@ galaxy_info:
     - freebsd
     - zfs
 dependencies: []
+collections:
+  - community.general
 ...

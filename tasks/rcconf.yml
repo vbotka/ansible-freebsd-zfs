@@ -1,7 +1,7 @@
 ---
 
 - name: "rcconf: Configure ZFS in /etc/rc.conf"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/rc.conf
     regexp: '^\s*{{ item.regexp }}\s*=(.*)$'
     line: "{{ item.regexp }}={{ item.val }}"
@@ -10,22 +10,22 @@
   notify: restart zfs
 
 - name: "rcconf: Enable and Start zfs"
-  when: fzfs_enable|bool
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/rc.conf
     regexp: '^\s*zfs_enable\s*=(.*)$'
     line: 'zfs_enable="YES"'
     backup: "{{ fzfs_backup_conf }}"
   notify: enable and start zfs
+  when: fzfs_enable|bool
 
 - name: "rcconf: Disable and Stop zfs"
-  when: not fzfs_enable|bool
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/rc.conf
     regexp: '^\s*zfs_enable\s*=(.*)$'
     line: 'zfs_enable="NO"'
     backup: "{{ fzfs_backup_conf }}"
   notify: disable and stop zfs
+  when: not fzfs_enable|bool
 
 - name: "rcconf: flush handlers"
   meta: flush_handlers

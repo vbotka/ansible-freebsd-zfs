@@ -15,8 +15,8 @@
          fzfs_backup_conf [{{ fzfs_backup_conf }}]
          fzfs_facts_recurse [{{ fzfs_facts_recurse }}]
          fzfs_mount_all [{{ fzfs_mount_all }}]
-         fzfs_sysctl
-         {{ fzfs_sysctl|to_yaml }}
+         fzfs_sysctl_conf
+         {{ fzfs_sysctl_conf|to_yaml }}
          fzfs_rcconf
          {{ fzfs_rcconf|to_yaml }}
          fzfs_datasets
@@ -26,7 +26,7 @@
          fzfs_mountpoints
          {{ fzfs_mountpoints|to_yaml }}
 
-  debug:
+  ansible.builtin.debug:
     msg: "{{ msg.split('\n') }}"
 
 # EOF
