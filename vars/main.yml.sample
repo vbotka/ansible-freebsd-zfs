@@ -1,5 +1,5 @@
 ---
-# vars for freebsd_zfs
+# vars samples for freebsd_zfs
 
 # fzfs_enable: true
 # fzfs_debug: true

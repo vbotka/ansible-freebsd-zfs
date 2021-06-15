@@ -7,7 +7,7 @@
       ansible.builtin.set_fact:
         fp_sysctl_conf: "{{ fzfs_sysctl_conf }}"
     - name: Include vbotka.freebsd_postinstall sysctl
-      include_role:
+      ansible.builtin.include_role:
         name: vbotka.freebsd_postinstall
         tasks_from: sysctl.yml
   tags: fzfs_sysctl
@@ -18,22 +18,26 @@
       ansible.builtin.set_fact:
         fp_sysctl_conf: "{{ fzfs_sysctl_conf }}"
     - name: Include vbotka.freebsd_postinstall loader
-      include_role:
+      ansible.builtin.include_role:
         name: vbotka.freebsd_postinstall
         tasks_from: loader.yml
   tags: fzfs_loader
 
-- import_tasks: debug.yml
+- name: Import debug.yml
+  ansible.builtin.import_tasks: debug.yml
   when: fzfs_debug|bool
   tags: [always, fzfs_debug]
 
-- import_tasks: rcconf.yml
+- name: Import rcconf.yml
+  ansible.builtin.import_tasks: rcconf.yml
   tags: fzfs_rcconf
 
-- import_tasks: facts.yml
+- name: Import facts.yml
+  ansible.builtin.import_tasks: facts.yml
   tags: fzfs_facts
 
-- import_tasks: manage.yml
+- name: Import manage.yml
+  ansible.builtin.import_tasks: manage.yml
   tags: fzfs_manage
 
 # EOF
