@@ -20,7 +20,7 @@
   when: fzfs_enable|bool
 
 - name: mount all zfs
-  command:
+  ansible.builtin.command:
     cmd: zfs mount -a
   when: fzfs_mount_all|bool
 

@@ -27,11 +27,11 @@
   notify: disable and stop zfs
   when: not fzfs_enable|bool
 
-- name: "rcconf: flush handlers"
-  meta: flush_handlers
+- name: "rcconf: Meta flush handlers"
+  ansible.builtin.meta: flush_handlers
 
-- name: "rcconf: Exit play if ZFS is not enabled"
-  meta: end_play
+- name: "rcconf: Meta end play if ZFS is not enabled"
+  ansible.builtin.meta: end_play
   when: not fzfs_enable|bool
 
 # EOF

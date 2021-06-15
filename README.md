@@ -33,13 +33,14 @@ Review defaults and examples in vars.
 shell> ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 'sudo pw usermod user -s /bin/sh'
 ```
 
-2) Install role
+2) Install the role and dependencies
 
 ```
-shell> ansible-galaxy install vbotka.freebsd_zfs
+shell> ansible-galaxy role install vbotka.freebsd_zfs
+shell> ansible-galaxy collection install community.general
 ```
 
-3) Fit variables
+3) Fit variables, e.g. in vars/main.yml
 
 ```
 shell> editor vbotka.freebsd_zfs/vars/main.yml
