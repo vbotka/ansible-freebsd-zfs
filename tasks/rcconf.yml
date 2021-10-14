@@ -30,8 +30,8 @@
 - name: "rcconf: Meta flush handlers"
   ansible.builtin.meta: flush_handlers
 
-- name: "rcconf: Meta end play if ZFS is not enabled"
-  ansible.builtin.meta: end_play
+- name: "rcconf: Meta end host if ZFS is not enabled"
+  ansible.builtin.meta: end_host
   when: not fzfs_enable|bool
 
 # EOF
