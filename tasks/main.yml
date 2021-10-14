@@ -26,7 +26,7 @@
 - name: Import debug.yml
   ansible.builtin.import_tasks: debug.yml
   when: fzfs_debug|bool
-  tags: [always, fzfs_debug]
+  tags: fzfs_debug
 
 - name: Import rcconf.yml
   ansible.builtin.import_tasks: rcconf.yml
