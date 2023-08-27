@@ -3,28 +3,28 @@
 - name: Debug
   vars:
     msg: |-
-         ansible_architecture [{{ ansible_architecture }}]
-         ansible_os_family [{{ ansible_os_family }}]
-         ansible_distribution [{{ ansible_distribution }}]
-         ansible_distribution_major_version [{{ ansible_distribution_major_version }}]
-         ansible_distribution_version [{{ ansible_distribution_version }}]
-         ansible_distribution_release [{{ ansible_distribution_release }}]
-         ansible_python_version [{{ ansible_python_version }}]
+         ansible_architecture: {{ ansible_architecture }}
+         ansible_os_family: {{ ansible_os_family }}
+         ansible_distribution: {{ ansible_distribution }}
+         ansible_distribution_major_version: {{ ansible_distribution_major_version }}
+         ansible_distribution_version: {{ ansible_distribution_version }}
+         ansible_distribution_release: {{ ansible_distribution_release }}
+         ansible_python_version: {{ ansible_python_version }}
 
-         fzfs_enable [{{ fzfs_enable }}]
-         fzfs_backup_conf [{{ fzfs_backup_conf }}]
-         fzfs_facts_recurse [{{ fzfs_facts_recurse }}]
-         fzfs_mount_all [{{ fzfs_mount_all }}]
-         fzfs_sysctl_conf
-         {{ fzfs_sysctl_conf|to_yaml }}
-         fzfs_rcconf
-         {{ fzfs_rcconf|to_yaml }}
-         fzfs_datasets
-         {{ fzfs_datasets|to_yaml }}
-         fzfs_manage
-         {{ fzfs_manage|to_yaml }}
-         fzfs_mountpoints
-         {{ fzfs_mountpoints|to_yaml }}
+         fzfs_enable: {{ fzfs_enable }}
+         fzfs_backup_conf: {{ fzfs_backup_conf }}
+         fzfs_facts_recurse: {{ fzfs_facts_recurse }}
+         fzfs_mount_all: {{ fzfs_mount_all }}
+         fzfs_sysctl_conf:
+           {{ fzfs_sysctl_conf|to_yaml(indent=2)|indent(2) }}
+         fzfs_rcconf:
+           {{ fzfs_rcconf|to_yaml(indent=2)|indent(2) }}
+         fzfs_datasets:
+           {{ fzfs_datasets|to_yaml(indent=2)|indent(2) }}
+         fzfs_manage:
+           {{ fzfs_manage|to_yaml(indent=2)|indent(2) }}
+         fzfs_mountpoints:
+           {{ fzfs_mountpoints|to_yaml(indent=2)|indent(2) }}
 
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
