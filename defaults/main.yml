@@ -4,6 +4,7 @@
 fzfs_enable: false
 fzfs_debug: false
 fzfs_backup_conf: false
+fzfs_assert_enable: true
 fzfs_facts_recurse: true
 fzfs_mount_all: true
 fzfs_rcconf: []
@@ -13,6 +14,13 @@ fzfs_mountpoints: []
 
 # Unify sysctl with the role vbotka.freebsd_postinstall
 fzfs_sysctl_conf: "{{ fp_sysctl_conf|default([]) }}"
+
+# Assert pools
+fzfs_pools_required: "{{ fzfs_manage|map(attribute='name')|
+                                     map('split', '/')|
+                                     map('first')|unique }}"
+fzfs_pools_present: "{{ ansible_zfs_pools|map(attribute='name') }}"
+fzfs_pools_missing: "{{ fzfs_pools_required|difference(fzfs_pools_present) }}"
 
 # EOF
 ...

@@ -7,7 +7,7 @@
 # fzfs_rcconf: []
 # fzfs_datasets: []
 # fzfs_sysctl:
-#  - { name: vfs.zfs.prefetch_disable, value: 0 }
+#  - {name: vfs.zfs.prefetch_disable, value: 0}
 # fzfs_manage:
 #  - name: zroot/test1
 #    state: present
@@ -22,7 +22,7 @@
 #  - mountpoint: /local/jails
 #    owner: root
 #    group: wheel
-#    mode: "0700"
+#    mode: '0700'
 
 # EOF
 ...

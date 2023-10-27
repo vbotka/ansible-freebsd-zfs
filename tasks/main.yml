@@ -3,13 +3,16 @@
 
 - name: Include role vbotka.freebsd_postinstall task sysctl
   block:
+
     - name: Set kernel state fzfs_sysctl
       ansible.builtin.set_fact:
         fp_sysctl_conf: "{{ fzfs_sysctl_conf }}"
+
     - name: Include vbotka.freebsd_postinstall sysctl
       ansible.builtin.include_role:
         name: vbotka.freebsd_postinstall
         tasks_from: sysctl.yml
+
   tags: fzfs_sysctl
 
 - name: Include role vbotka.freebsd_postinstall task loader
