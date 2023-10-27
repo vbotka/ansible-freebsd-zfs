@@ -1,5 +1,12 @@
 ---
 
+- name: "manage: Assert pools"
+  ansible.builtin.assert:
+    that: fzfs_pools_missing|length == 0
+    fail_msg: "[ERR] Missing pool(s): {{ fzfs_pools_missing }}"
+    success_msg: "[OK]  All pools available."
+  when: fzfs_assert_enable|bool
+
 - name: "manage: Manage zfs"
   community.general.zfs:
     name: "{{ item.name }}"
