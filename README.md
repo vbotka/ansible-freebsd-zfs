@@ -15,6 +15,8 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 
 * [vbotka.freebsd_postinstall](https://galaxy.ansible.com/vbotka/freebsd_postinstall)
 
+This role is needed to run tasks from *sysctl.yml* and *loader.yml*
+
 ### Collections
 
 * community.general
@@ -37,6 +39,7 @@ shell> ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh
 
 ```
 shell> ansible-galaxy role install vbotka.freebsd_zfs
+shell> ansible-galaxy role install vbotka.freebsd_postinstall
 shell> ansible-galaxy collection install community.general
 ```
 
