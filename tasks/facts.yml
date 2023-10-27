@@ -12,6 +12,8 @@
   ansible.builtin.debug:
     msg: "name [{{ item.name }}], size [{{ item.size }}], free [{{ item.free }}]"
   loop: "{{ ansible_zfs_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
   when: fzfs_debug|bool
 
 - name: "facts: Run zfs_facts"
@@ -19,6 +21,8 @@
     name: "{{ item.name }}"
     recurse: "{{ fzfs_facts_recurse }}"
   loop: "{{ ansible_zfs_pools }}"
+  loop_control:
+    label: "{{ item.name }}"
   register: ansible_zfs_ds
 
 - name: "facts: Debug ansible_zfs_ds"
@@ -29,6 +33,8 @@
 - name: "facts: Get list of datasets"
   include_tasks: facts_include_1.yml
   loop: "{{ ansible_zfs_ds.results }}"
+  loop_control:
+    label: "{{ item.ansible_facts.ansible_zfs_datasets|map(attribute='name') }}"
 
 - name: "facts: Debug list of datasets"
   ansible.builtin.debug:
