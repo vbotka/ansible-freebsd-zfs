@@ -17,11 +17,11 @@
   ansible.builtin.service:
     name: zfs
     state: restarted
-  when: fzfs_enable|bool
+  when: fzfs_enable | bool
 
 - name: Mount all zfs
   ansible.builtin.command:
     cmd: zfs mount -a
-  when: fzfs_mount_all|bool
+  when: fzfs_mount_all | bool
 
 # EOF

@@ -12,11 +12,11 @@ fzfs_datasets: []
 fzfs_manage: []
 fzfs_mountpoints: []
 # Unify sysctl with the role vbotka.freebsd_postinstall
-fzfs_sysctl_conf: "{{ fp_sysctl_conf|default([]) }}"
+fzfs_sysctl_conf: "{{ fp_sysctl_conf | d([]) }}"
 
 # Assert pools
-fzfs_pools_required: "{{ fzfs_manage|map(attribute='name')| map('split', '/')| map('first')|unique }}"
-fzfs_pools_present: "{{ ansible_zfs_pools|map(attribute='name') }}"
-fzfs_pools_missing: "{{ fzfs_pools_required|difference(fzfs_pools_present) }}"
+fzfs_pools_required: "{{ fzfs_manage | map(attribute='name') | map('split', '/') | map('first') | unique }}"
+fzfs_pools_present: "{{ ansible_zfs_pools | map(attribute='name') }}"
+fzfs_pools_missing: "{{ fzfs_pools_required | difference(fzfs_pools_present) }}"
 
 # EOF
