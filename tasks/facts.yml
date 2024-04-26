@@ -5,7 +5,7 @@
 - name: "Facts: Debug ansible_zfs_pools"
   ansible.builtin.debug:
     var: ansible_zfs_pools
-  when: fzfs_debug|bool
+  when: fzfs_debug | bool
 
 - name: "Facts: Debug list pools"
   ansible.builtin.debug:
@@ -13,7 +13,7 @@
   loop: "{{ ansible_zfs_pools }}"
   loop_control:
     label: "{{ item.name }}"
-  when: fzfs_debug|bool
+  when: fzfs_debug | bool
 
 - name: "Facts: Run zfs_facts"
   community.general.zfs_facts:
@@ -27,7 +27,7 @@
 - name: "Facts: Debug ansible_zfs_ds"
   ansible.builtin.debug:
     var: ansible_zfs_ds
-  when: fzfs_debug|bool
+  when: fzfs_debug | bool
 
 - name: "Facts: Get list of datasets"
   ansible.builtin.include_tasks: facts_include_1.yml
@@ -38,6 +38,6 @@
 - name: "Facts: Debug list of datasets"
   ansible.builtin.debug:
     var: fzfs_datasets
-  when: fzfs_debug|bool
+  when: fzfs_debug | bool
 
 # EOF

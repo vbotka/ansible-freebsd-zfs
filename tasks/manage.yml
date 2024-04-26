@@ -1,17 +1,17 @@
 ---
 - name: "Manage: Assert pools"
   ansible.builtin.assert:
-    that: fzfs_pools_missing|length == 0
+    that: fzfs_pools_missing | length == 0
     fail_msg: "[ERR] Missing pool(s): {{ fzfs_pools_missing }}"
     success_msg: "[OK]  All pools available."
-  when: fzfs_assert_enable|bool
+  when: fzfs_assert_enable | bool
 
 - name: "Manage: Manage zfs"
   community.general.zfs:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-    origin: "{{ item.origin | default(omit) }}"
-    extra_zfs_properties: "{{ item.extra_zfs_properties | default(omit) }}"
+    origin: "{{ item.origin | d(omit) }}"
+    extra_zfs_properties: "{{ item.extra_zfs_properties | d(omit) }}"
   loop: "{{ fzfs_manage }}"
   loop_control:
     label: "{{ item.name }}"
@@ -20,9 +20,9 @@
   ansible.builtin.file:
     state: directory
     path: "{{ item.mountpoint }}"
-    owner: "{{ item.owner | default(omit) }}"
-    group: "{{ item.group | default(omit) }}"
-    mode: "{{ item.mode | default(omit) }}"
+    owner: "{{ item.owner | d(omit) }}"
+    group: "{{ item.group | d(omit) }}"
+    mode: "{{ item.mode | d(omit) }}"
   loop: "{{ fzfs_mountpoints }}"
   loop_control:
     label: "{{ item.mountpoint }}"

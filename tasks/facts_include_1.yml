@@ -4,7 +4,7 @@
     fzfs_datasets: >
       {{ fzfs_datasets + [{'pool': item.name,
                            'name': data_set.name,
-                           'mountpoint': data_set.mountpoint|default('NONE')}] }}
+                           'mountpoint': data_set.mountpoint | d('NONE')}] }}
   loop: "{{ item.ansible_facts.ansible_zfs_datasets }}"
   loop_control:
     loop_var: data_set

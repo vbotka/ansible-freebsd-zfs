@@ -15,7 +15,7 @@
     line: zfs_enable="YES"
     backup: "{{ fzfs_backup_conf }}"
   notify: enable and start zfs
-  when: fzfs_enable|bool
+  when: fzfs_enable | bool
 
 - name: "Rcconf: Disable and Stop zfs"
   ansible.builtin.lineinfile:
@@ -24,13 +24,13 @@
     line: zfs_enable="NO"
     backup: "{{ fzfs_backup_conf }}"
   notify: disable and stop zfs
-  when: not fzfs_enable|bool
+  when: not fzfs_enable | bool
 
 - name: "Rcconf: Meta flush handlers"
   ansible.builtin.meta: flush_handlers
 
 - name: "Rcconf: Meta end host if ZFS is not enabled"
   ansible.builtin.meta: end_host
-  when: not fzfs_enable|bool
+  when: not fzfs_enable | bool
 
 # EOF

@@ -1,5 +1,5 @@
 ---
-- name: Debug
+- name: "Debug fzfs_debug={{ fzfs_debug }}"
   vars:
     msg: |-
       ansible_architecture: {{ ansible_architecture }}
