@@ -20,6 +20,7 @@ Minor Changes
 -------------
 * Update README
 * Update Ansible lint config.
+* Fix Ansible lint.
 
 Bugfixes
 --------

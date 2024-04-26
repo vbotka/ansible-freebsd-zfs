@@ -1,6 +1,5 @@
 ---
-
-- name: "facts:facts_include_1: Create list of datasets"
+- name: "Facts:facts_include_1: Create list of datasets"
   ansible.builtin.set_fact:
     fzfs_datasets: >
       {{ fzfs_datasets + [{'pool': item.name,
@@ -12,4 +11,3 @@
     label: "{{ data_set.name }}"
 
 # EOF
-...

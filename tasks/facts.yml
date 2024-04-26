@@ -1,22 +1,21 @@
 ---
-
-- name: "facts: Run zpool_facts"
+- name: "Facts: Run zpool_facts"
   community.general.zpool_facts:
 
-- name: "facts: Debug ansible_zfs_pools"
+- name: "Facts: Debug ansible_zfs_pools"
   ansible.builtin.debug:
     var: ansible_zfs_pools
   when: fzfs_debug|bool
 
-- name: "facts: Debug list pools"
+- name: "Facts: Debug list pools"
   ansible.builtin.debug:
-    msg: "name [{{ item.name }}], size [{{ item.size }}], free [{{ item.free }}]"
+    msg: name [{{ item.name }}], size [{{ item.size }}], free [{{ item.free }}]
   loop: "{{ ansible_zfs_pools }}"
   loop_control:
     label: "{{ item.name }}"
   when: fzfs_debug|bool
 
-- name: "facts: Run zfs_facts"
+- name: "Facts: Run zfs_facts"
   community.general.zfs_facts:
     name: "{{ item.name }}"
     recurse: "{{ fzfs_facts_recurse }}"
@@ -25,21 +24,20 @@
     label: "{{ item.name }}"
   register: ansible_zfs_ds
 
-- name: "facts: Debug ansible_zfs_ds"
+- name: "Facts: Debug ansible_zfs_ds"
   ansible.builtin.debug:
     var: ansible_zfs_ds
   when: fzfs_debug|bool
 
-- name: "facts: Get list of datasets"
-  include_tasks: facts_include_1.yml
+- name: "Facts: Get list of datasets"
+  ansible.builtin.include_tasks: facts_include_1.yml
   loop: "{{ ansible_zfs_ds.results }}"
   loop_control:
-    label: "{{ item.ansible_facts.ansible_zfs_datasets|map(attribute='name') }}"
+    label: "{{ item.ansible_facts.ansible_zfs_datasets | map(attribute='name') }}"
 
-- name: "facts: Debug list of datasets"
+- name: "Facts: Debug list of datasets"
   ansible.builtin.debug:
     var: fzfs_datasets
   when: fzfs_debug|bool
 
 # EOF
-...

@@ -1,28 +1,27 @@
 ---
 # handlers for freebsd_zfs
 
-- name: enable and start zfs
+- name: Enable and start zfs
   ansible.builtin.service:
     name: zfs
     state: started
     enabled: true
 
-- name: disable and stop zfs
+- name: Disable and stop zfs
   ansible.builtin.service:
     name: zfs
     state: stopped
     enabled: false
 
-- name: restart zfs
+- name: Restart zfs
   ansible.builtin.service:
     name: zfs
     state: restarted
   when: fzfs_enable|bool
 
-- name: mount all zfs
+- name: Mount all zfs
   ansible.builtin.command:
     cmd: zfs mount -a
   when: fzfs_mount_all|bool
 
 # EOF
-...
