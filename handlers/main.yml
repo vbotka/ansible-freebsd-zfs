@@ -19,7 +19,7 @@
     state: restarted
   when: fzfs_enable | bool
 
-- name: Mount all zfs
+- name: Mount all zfs # noqa: no-changed-when
   ansible.builtin.command:
     cmd: zfs mount -a
   when: fzfs_mount_all | bool
