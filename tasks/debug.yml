@@ -2,6 +2,7 @@
 - name: "Debug fzfs_debug={{ fzfs_debug }}"
   vars:
     msg: |-
+      fzfs_role_version: {{ fzfs_role_version }}
       ansible_architecture: {{ ansible_architecture }}
       ansible_os_family: {{ ansible_os_family }}
       ansible_distribution: {{ ansible_distribution }}
@@ -11,6 +12,7 @@
       ansible_python_version: {{ ansible_python_version }}
 
       fzfs_enable: {{ fzfs_enable }}
+      fzfs_debug2: {{ fzfs_debug2 }}
       fzfs_backup_conf: {{ fzfs_backup_conf }}
       fzfs_assert_enable: {{ fzfs_assert_enable }}
       fzfs_facts_recurse: {{ fzfs_facts_recurse }}
