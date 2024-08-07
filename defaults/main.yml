@@ -1,8 +1,10 @@
 ---
 # defaults for freebsd_zfs
+fzfs_role_version: 2.6.1
 
 fzfs_enable: false
 fzfs_debug: false
+fzfs_debug2: false
 fzfs_backup_conf: false
 fzfs_assert_enable: true
 fzfs_facts_recurse: true

@@ -1,6 +1,8 @@
 # freebsd_zfs
 
-[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/freebsd_zfs)[![Build Status](https://app.travis-ci.com/vbotka/ansible-freebsd-zfs.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-freebsd-zfs)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-freebsd-zfs)](https://github.com/vbotka/ansible-freebsd-zfs/tags)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/freebsd_zfs)
+[![Build Status](https://app.travis-ci.com/vbotka/ansible-freebsd-zfs.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-freebsd-zfs)
+[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-freebsd-zfs)](https://github.com/vbotka/ansible-freebsd-zfs/tags)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_zfs/) FreeBSD. Configure ZFS.
 
@@ -32,10 +34,10 @@ See defaults and examples in vars.
 1) Change the shell on the remote host to /bin/sh if necessary
 
 ```bash
-shell> ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 'sudo pw usermod user -s /bin/sh'
+shell> ansible host -e ansible_shell_type=csh -e ansible_shell_executable=/bin/csh -a 'sudo pw usermod user -s /bin/sh'
 ```
 
-2) Install roles and collections
+2) Install the roles and collections
 
 ```bash
 shell> ansible-galaxy role install vbotka.freebsd_zfs
@@ -48,7 +50,7 @@ If necessary install the collection
 shell> ansible-galaxy collection install community.general
 ```
 
-3) Fit variables
+3) Fit variables to your needs.
 
 4) Create the playbook
 
