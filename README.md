@@ -54,7 +54,7 @@ shell> ansible-galaxy collection install community.general
 
 4) Create the playbook
 
-```bash
+```yaml
 shell> cat freebsd-zfs.yml
 - hosts: host
   roles:
