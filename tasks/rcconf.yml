@@ -1,4 +1,5 @@
 ---
+
 - name: "Rcconf: Configure ZFS in /etc/rc.conf"
   ansible.builtin.lineinfile:
     dest: /etc/rc.conf

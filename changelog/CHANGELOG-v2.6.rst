@@ -14,9 +14,12 @@ Maintenance update.
 
 Major Changes
 -------------
+* Add tasks sysctl.yml
 
 Minor Changes
 -------------
+* Update README
+* Update vars/main.yml.sample
 
 
 2.6.1

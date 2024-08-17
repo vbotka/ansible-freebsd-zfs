@@ -1,4 +1,5 @@
 ---
+
 - name: "Manage: Assert pools"
   ansible.builtin.assert:
     that: fzfs_pools_missing | length == 0

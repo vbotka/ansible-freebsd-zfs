@@ -13,8 +13,7 @@ fzfs_rcconf: []
 fzfs_datasets: []
 fzfs_manage: []
 fzfs_mountpoints: []
-# Unify sysctl with the role vbotka.freebsd_postinstall
-fzfs_sysctl_conf: "{{ fp_sysctl_conf | d([]) }}"
+fzfs_sysctl_conf: []
 
 # Assert pools
 fzfs_pools_required: "{{ fzfs_manage | map(attribute='name') | map('split', '/') | map('first') | unique }}"
