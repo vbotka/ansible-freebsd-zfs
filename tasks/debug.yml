@@ -15,6 +15,7 @@
       fzfs_debug2: {{ fzfs_debug2 }}
       fzfs_backup_conf: {{ fzfs_backup_conf }}
       fzfs_assert_enable: {{ fzfs_assert_enable }}
+      fzfs_assert_quiet: {{ fzfs_assert_quiet }}
       fzfs_facts_recurse: {{ fzfs_facts_recurse }}
       fzfs_mount_all: {{ fzfs_mount_all }}
 

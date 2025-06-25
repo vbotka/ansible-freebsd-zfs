@@ -1,11 +1,12 @@
 ---
 
 - name: "Manage: Assert pools"
+  when: fzfs_assert_enable | bool
   ansible.builtin.assert:
     that: fzfs_pools_missing | length == 0
+    quiet: "{{ fzfs_assert_quiet | bool }}"
     fail_msg: "[ERR] Missing pool(s): {{ fzfs_pools_missing }}"
     success_msg: "[OK]  All pools available."
-  when: fzfs_assert_enable | bool
 
 - name: "Manage: Manage zfs"
   community.general.zfs:
@@ -18,6 +19,7 @@
     label: "{{ item.name }}"
 
 - name: "Manage: Set mode and ownership of zfs mountpoints"
+  notify: mount all zfs
   ansible.builtin.file:
     state: directory
     path: "{{ item.mountpoint }}"
@@ -27,6 +29,5 @@
   loop: "{{ fzfs_mountpoints }}"
   loop_control:
     label: "{{ item.mountpoint }}"
-  notify: mount all zfs
 
 # EOF

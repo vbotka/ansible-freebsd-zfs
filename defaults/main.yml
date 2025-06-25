@@ -7,6 +7,7 @@ fzfs_debug: false
 fzfs_debug2: false
 fzfs_backup_conf: false
 fzfs_assert_enable: true
+fzfs_assert_quiet: true
 fzfs_facts_recurse: true
 fzfs_mount_all: true
 fzfs_rcconf: []

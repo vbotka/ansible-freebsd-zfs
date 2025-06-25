@@ -23,7 +23,7 @@ Minor Changes
 -------------
 * .gitignore added to version control.
 * Improved tasks formatting.
-
+* Added var fzfs_assert_quiet (default=true).
 
 Bugfixes
 --------
