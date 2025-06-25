@@ -15,6 +15,9 @@
       when: fzfs_debug | bool
       ansible.builtin.debug:
         msg: |
+          fzfs_pools_required: {{ fzfs_pools_required }}
+          fzfs_pools_missing: {{ fzfs_pools_missing }}
+          fzfs_pools_present: {{ fzfs_pools_present }}
           {% for i in ansible_zfs_pools %}
           name: {{ i.name }} size: {{ i.size }} free: {{ i.free }}
           {% endfor %}
