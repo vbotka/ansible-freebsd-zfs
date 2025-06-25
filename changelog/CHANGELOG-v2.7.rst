@@ -21,6 +21,7 @@ Major Changes
 Minor Changes
 -------------
 * .gitignore added to version control.
+* Improved tasks formatting.
 
 
 Bugfixes
