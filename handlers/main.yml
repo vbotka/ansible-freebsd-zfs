@@ -3,29 +3,29 @@
 
 - name: Enable and start zfs
   listen: enable and start zfs
-  ansible.builtin.service:
-    name: zfs
-    state: started
+  vbotka.freebsd.service:
+    script: zfs
+    command: start
     enabled: true
 
 - name: Disable and stop zfs
   listen: disable and stop zfs
-  ansible.builtin.service:
-    name: zfs
-    state: stopped
+  vbotka.freebsd.service:
+    script: zfs
+    command: stop
     enabled: false
 
 - name: Restart zfs
   listen: restart zfs
-  ansible.builtin.service:
-    name: zfs
-    state: restarted
   when: fzfs_enable | bool
+  vbotka.freebsd.service:
+    script: zfs
+    command: restart
 
 - name: Mount all zfs # noqa: no-changed-when
   listen: mount all zfs
+  when: fzfs_mount_all | bool
   ansible.builtin.command:
     cmd: zfs mount -a
-  when: fzfs_mount_all | bool
 
 # EOF
