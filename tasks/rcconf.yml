@@ -9,14 +9,18 @@
 
 - name: "Rcconf: Enable and Start zfs"
   when: fzfs_enable | bool
-  notify: enable and start zfs
+  notify:
+    - start zfs
+    - enable zfs
   community.general.sysrc:
     name: zfs_enable
     value: "YES"
 
 - name: "Rcconf: Disable and Stop zfs"
   when: not fzfs_enable | bool
-  notify: disable and stop zfs
+  notify:
+    - stop zfs
+    - disable zfs
   community.general.sysrc:
     name: zfs_enable
     value: "NO"

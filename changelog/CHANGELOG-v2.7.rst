@@ -14,10 +14,12 @@ Ansible 2.18 update
 
 Major Changes
 -------------
-* Supported FreeBSD 13.4, 13.5, 14.2, 14.3
-* Use module vbotka.freebsd.service instead of ansible.builtin.service
-* Collection vbotka.freebsd is required.
+* Support FreeBSD 13.4, 13.5, 14.2, 14.3
+* Add tasks/pools.yml Add dictionary fzfs_pools
 * Use module community.general.sysrc
+* Use module vbotka.freebsd.service instead of ansible.builtin.service
+* Update handlers to use the module vbotka.freebsd.service
+* Collection vbotka.freebsd is required.
 
 Minor Changes
 -------------

@@ -1,19 +1,29 @@
 ---
 # handlers for freebsd_zfs
 
-- name: Enable and start zfs
-  listen: enable and start zfs
+- name: Enable zfs
+  listen: enable zfs
+  vbotka.freebsd.service:
+    script: zfs
+    command: enable
+
+- name: Start zfs
+  listen: start zfs
   vbotka.freebsd.service:
     script: zfs
     command: start
-    enabled: true
 
-- name: Disable and stop zfs
-  listen: disable and stop zfs
+- name: Disable zfs
+  listen: disable zfs
+  vbotka.freebsd.service:
+    script: zfs
+    command: disable
+
+- name: Stop zfs
+  listen: stop zfs
   vbotka.freebsd.service:
     script: zfs
     command: stop
-    enabled: false
 
 - name: Restart zfs
   listen: restart zfs

@@ -23,6 +23,8 @@
         {{ fzfs_sysctl_conf | to_yaml(indent=2) | indent(2) }}
       fzfs_rcconf:
         {{ fzfs_rcconf | to_yaml(indent=2) | indent(2) }}
+      fzfs_pools:
+        {{ fzfs_pools | to_yaml(indent=2) | indent(2) }}
       fzfs_datasets:
         {{ fzfs_datasets | to_yaml(indent=2) | indent(2) }}
       fzfs_manage:

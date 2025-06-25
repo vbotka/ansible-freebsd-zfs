@@ -11,6 +11,7 @@ fzfs_assert_quiet: true
 fzfs_facts_recurse: true
 fzfs_mount_all: true
 fzfs_rcconf: []
+fzfs_pools: {}
 fzfs_datasets: []
 fzfs_manage: []
 fzfs_mountpoints: []

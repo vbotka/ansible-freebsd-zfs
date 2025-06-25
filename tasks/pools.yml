@@ -1,0 +1,18 @@
+---
+- name: "Pools: Manage ZFS pools."
+  community.general.zpool:
+    name: "{{ item.key }}"
+    vdevs: "{{ item.value.vdevs }}"
+    altroot: "{{ item.value.altroot | d(omit) }}"
+    disable_new_features: "{{ item.value.disable_new_features | d(omit) }}"
+    filesystem_properties: "{{ item.value.filesystem_properties | d(omit) }}"
+    force: "{{ item.value.force | d(omit) }}"
+    mountpoint: "{{ item.value.mountpoint | d(omit) }}"
+    pool_properties: "{{ item.value.pool_properties | d(omit) }}"
+    state: "{{ item.value.state | d(omit) }}"
+    temp_name: "{{ item.value.temp_name | d(omit) }}"
+  loop: "{{ fzfs_pools | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+# EOF
