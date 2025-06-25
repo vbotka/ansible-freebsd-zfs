@@ -18,6 +18,8 @@ Major Changes
 
 Minor Changes
 -------------
+* .gitignore added to version control.
+
 
 Bugfixes
 --------
