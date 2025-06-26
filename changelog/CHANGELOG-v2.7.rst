@@ -35,10 +35,8 @@ Bugfixes
 
 Breaking Changes / Porting Guide
 --------------------------------
-
 * The role vbotka.freebsd.postinstall from the collection vbotka.freebsd is required instead of the
   standalone role vbotka.freebsd_postinstall (note the dot '.' instead of the underscore '_' in the
   role's name.
-
 * The variable fzfs_assert_enable (default=true) was removed. The sanity tasks are enabled
-  unconditionally.
+  by default.
