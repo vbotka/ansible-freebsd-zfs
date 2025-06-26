@@ -17,6 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Remove unused variable fzfs_backup_conf
 
 
 2.7.0
