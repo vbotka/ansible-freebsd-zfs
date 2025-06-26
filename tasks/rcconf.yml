@@ -1,37 +1,35 @@
 ---
 
 - name: "Rcconf: Configure ZFS in /etc/rc.conf"
-  ansible.builtin.lineinfile:
-    dest: /etc/rc.conf
-    regexp: ^\s*{{ item.regexp }}\s*=(.*)$
-    line: "{{ item.regexp }}={{ item.val }}"
-    backup: "{{ fzfs_backup_conf }}"
-  loop: "{{ fzfs_rcconf }}"
   notify: restart zfs
+  community.general.sysrc:
+    name: "{{ item.regexp }}"
+    value: "{{ item.val }}"
+  loop: "{{ fzfs_rcconf }}"
 
 - name: "Rcconf: Enable and Start zfs"
-  ansible.builtin.lineinfile:
-    dest: /etc/rc.conf
-    regexp: ^\s*zfs_enable\s*=(.*)$
-    line: zfs_enable="YES"
-    backup: "{{ fzfs_backup_conf }}"
-  notify: enable and start zfs
   when: fzfs_enable | bool
+  notify:
+    - start zfs
+    - enable zfs
+  community.general.sysrc:
+    name: zfs_enable
+    value: "YES"
 
 - name: "Rcconf: Disable and Stop zfs"
-  ansible.builtin.lineinfile:
-    dest: /etc/rc.conf
-    regexp: ^\s*zfs_enable\s*=(.*)$
-    line: zfs_enable="NO"
-    backup: "{{ fzfs_backup_conf }}"
-  notify: disable and stop zfs
   when: not fzfs_enable | bool
+  notify:
+    - stop zfs
+    - disable zfs
+  community.general.sysrc:
+    name: zfs_enable
+    value: "NO"
 
 - name: "Rcconf: Meta flush handlers"
   ansible.builtin.meta: flush_handlers
 
 - name: "Rcconf: Meta end host if ZFS is not enabled"
-  ansible.builtin.meta: end_host
   when: not fzfs_enable | bool
+  ansible.builtin.meta: end_host
 
 # EOF

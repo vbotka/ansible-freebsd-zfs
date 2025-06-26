@@ -6,8 +6,18 @@
 # fzfs_backup_conf: false
 # fzfs_rcconf: []
 # fzfs_datasets: []
+
 # fzfs_sysctl_conf:
 #  - {name: vfs.zfs.prefetch_disable, value: 0}
+
+# fzfs_pools:
+#   zroot:
+#     vdevs:
+#       - disks: [/dev/ada2]
+#   export:
+#     vdevs:
+#       - disks: [/dev/ada1]
+
 # fzfs_manage:
 #  - name: zroot/test1
 #    state: present
@@ -18,6 +28,7 @@
 #    extra_zfs_properties:
 #      compression: on
 #      mountpoint: /local/jails
+
 # fzfs_mountpoints:
 #  - mountpoint: /local/jails
 #    owner: root
