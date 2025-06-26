@@ -18,6 +18,7 @@ Major Changes
 Minor Changes
 -------------
 * Remove unused variable fzfs_backup_conf
+* Run tasks/debug.yml first.
 
 
 2.7.0
