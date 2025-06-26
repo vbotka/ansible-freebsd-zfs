@@ -23,6 +23,7 @@
           {% endfor %}
 
 - name: Datasets
+  when: fzfs_facts_ds | bool
   tags: fzfs_facts_ds
   block:
 

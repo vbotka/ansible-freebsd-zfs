@@ -27,12 +27,18 @@ Minor Changes
 * Improved tasks formatting.
 * Added var fzfs_assert_quiet (default=true).
 * Added vars to debug in tasks/facts.yml
+* Added var fzfs_facts_ds (default=false). Getting datasets is optional.
+* Added pools sanity.
 
 Bugfixes
 --------
 
 Breaking Changes / Porting Guide
 --------------------------------
+
 * The role vbotka.freebsd.postinstall from the collection vbotka.freebsd is required instead of the
   standalone role vbotka.freebsd_postinstall (note the dot '.' instead of the underscore '_' in the
   role's name.
+
+* The variable fzfs_assert_enable (default=true) was removed. The sanity tasks are enabled
+  unconditionally.

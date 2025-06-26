@@ -14,8 +14,9 @@
       fzfs_enable: {{ fzfs_enable }}
       fzfs_debug2: {{ fzfs_debug2 }}
       fzfs_backup_conf: {{ fzfs_backup_conf }}
-      fzfs_assert_enable: {{ fzfs_assert_enable }}
+      fzfs_pools_sanity: {{ fzfs_pools_sanity }}
       fzfs_assert_quiet: {{ fzfs_assert_quiet }}
+      fzfs_facts_ds: {{ fzfs_facts_ds }}
       fzfs_facts_recurse: {{ fzfs_facts_recurse }}
       fzfs_mount_all: {{ fzfs_mount_all }}
 
@@ -25,8 +26,6 @@
         {{ fzfs_rcconf | to_yaml(indent=2) | indent(2) }}
       fzfs_pools:
         {{ fzfs_pools | to_yaml(indent=2) | indent(2) }}
-      fzfs_datasets:
-        {{ fzfs_datasets | to_yaml(indent=2) | indent(2) }}
       fzfs_manage:
         {{ fzfs_manage | to_yaml(indent=2) | indent(2) }}
       fzfs_mountpoints:

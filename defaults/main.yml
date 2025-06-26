@@ -6,20 +6,21 @@ fzfs_enable: false
 fzfs_debug: false
 fzfs_debug2: false
 fzfs_backup_conf: false
-fzfs_assert_enable: true
+fzfs_pools_sanity: true
 fzfs_assert_quiet: true
+fzfs_facts_ds: false
 fzfs_facts_recurse: true
 fzfs_mount_all: true
+
+fzfs_sysctl_conf: []
 fzfs_rcconf: []
 fzfs_pools: {}
-fzfs_datasets: []
 fzfs_manage: []
 fzfs_mountpoints: []
-fzfs_sysctl_conf: []
 
 # Assert pools
-fzfs_pools_required: "{{ fzfs_manage | map(attribute='name') | map('split', '/') | map('first') | unique }}"
-fzfs_pools_present: "{{ ansible_zfs_pools | map(attribute='name') }}"
-fzfs_pools_missing: "{{ fzfs_pools_required | difference(fzfs_pools_present) }}"
+fzfs_pools_required: "{{ fzfs_manage | map(attribute='name') | map('split', '/') | map('first') | unique | sort }}"
+fzfs_pools_present: "{{ ansible_zfs_pools | map(attribute='name') | sort }}"
+fzfs_pools_missing: "{{ fzfs_pools_required | difference(fzfs_pools_present) | sort }}"
 
 # EOF

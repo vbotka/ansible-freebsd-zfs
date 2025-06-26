@@ -1,7 +1,6 @@
 ---
 
-- name: "Manage: Assert pools"
-  when: fzfs_assert_enable | bool
+- name: "Manage: Sanity all pools available."
   ansible.builtin.assert:
     that: fzfs_pools_missing | length == 0
     quiet: "{{ fzfs_assert_quiet | bool }}"
