@@ -19,6 +19,7 @@ Minor Changes
 -------------
 * Remove unused variable fzfs_backup_conf
 * Run tasks/debug.yml first.
+* Update tasks/facts.yml. Always get zpool facts.
 
 
 2.7.0
