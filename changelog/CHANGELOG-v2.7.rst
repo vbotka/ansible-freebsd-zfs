@@ -5,6 +5,14 @@ vbotka.freebsd_zfs 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.3
+=====
+
+Release Summary
+---------------
+Update README.
+
+
 2.7.2
 =====
 
