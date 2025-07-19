@@ -108,9 +108,11 @@
   vars:
     pool_status: "{{ out_zpool_status.stdout | d('') | community.general.jc('zpool-status') }}"
     pool_status_names: "{{ dict(pool_status | community.general.json_query('[].[pool, config[].name]')) }}"
+    skipped: "{{ fzfs_pools | intersect(pool_status_names) }}"
   block:
 
     - name: "Pools: WARNING | community.general.zpool skipped."
+      when: skipped | length > 0
       ansible.builtin.debug:
         msg: |
           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -119,7 +121,7 @@
           # The module community.general.zpool is not idempotent. It crashes
           # when running repeatedly. Because of the poor quality, the module
           # community.general.zpool will be skipped for pools:
-          # {{ fzfs_pools | intersect(pool_status_names) }}
+          # {{ skipped }}
           #
           # Configure the skipped pools manually, if necessary.
           # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
