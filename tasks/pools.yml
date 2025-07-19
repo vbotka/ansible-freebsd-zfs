@@ -1,4 +1,9 @@
 ---
+- name: "Pools: Get zpool status."
+  changed_when: false
+  register: out_zpool_status
+  ansible.builtin.command: zpool status
+
 - name: Sanity
   when: fzfs_pools_sanity | bool
   vars:
@@ -18,11 +23,6 @@
     disks_unique: "{{ pool_disks | unique | length }}"
   tags: fzfs_pools_sanity
   block:
-
-    - name: "Pools: Get zpool status."
-      changed_when: false
-      register: out_zpool_status
-      ansible.builtin.command: zpool status
 
     - name: "Pools: Sanity debug."
       when: fzfs_debug | bool
@@ -73,20 +73,72 @@
         fail_msg: "[ERR] fzfs_pools disks are not unique."
         success_msg: "[OK]  fzfs_pools disks are unique."
 
-- name: "Pools: Manage ZFS pools."
-  community.general.zpool:
-    name: "{{ item.key }}"
-    vdevs: "{{ item.value.vdevs }}"
-    altroot: "{{ item.value.altroot | d(omit) }}"
-    disable_new_features: "{{ item.value.disable_new_features | d(omit) }}"
-    filesystem_properties: "{{ item.value.filesystem_properties | d(omit) }}"
-    force: "{{ item.value.force | d(omit) }}"
-    mountpoint: "{{ item.value.mountpoint | d(omit) }}"
-    pool_properties: "{{ item.value.pool_properties | d(omit) }}"
-    state: "{{ item.value.state | d(omit) }}"
-    temp_name: "{{ item.value.temp_name | d(omit) }}"
-  loop: "{{ fzfs_pools | dict2items }}"
-  loop_control:
-    label: "{{ item.key }}"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# The module community.general.zpool can't create correct diff. For example,
+#
+# (Pdb) p vdev_layout_diff
+# {'before': {'vdevs': [{'type': 'stripe', 'disks': ['/dev/ada2']}, {'type': 'stripe', 'disks': ['/dev/ada3']}]},
+#  'after': {'vdevs': [{'type': 'stripe', 'disks': ['/dev/ada2', '/dev/ada3']}]}}
+#
+# This makes the module not idempotent. It crashes when running repeatedly. For example,
+#
+# failed: [srv.example.org] (item=iocage) =>
+#     ansible_loop_var: item
+#     changed: false
+#     cmd: /sbin/zpool add iocage /dev/ada2 /dev/ada3
+#     item:
+#         key: iocage
+#         value:
+#             vdevs:
+#             -   disks:
+#                 - /dev/ada2
+#                 - /dev/ada3
+#     msg: |-
+#         invalid vdev specification
+#         use '-f' to override the following errors:
+#         /dev/ada2 is part of active pool 'iocage'
+#         /dev/ada3 is part of active pool 'iocage'
+#     rc: 1
+#     ...
+#
+# Setting force=true doesn't help. At the moment, the only workaround is to skip the module if the pool
+# already exists.
+
+- name: Manage ZFS pools.
+  vars:
+    pool_status: "{{ out_zpool_status.stdout | d('') | community.general.jc('zpool-status') }}"
+    pool_status_names: "{{ dict(pool_status | community.general.json_query('[].[pool, config[].name]')) }}"
+  block:
+
+    - name: "Pools: WARNING | community.general.zpool skipped."
+      ansible.builtin.debug:
+        msg: |
+          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          # WARNING:
+          #
+          # The module community.general.zpool is not idempotent. It crashes
+          # when running repeatedly. Because of the poor quality, the module
+          # community.general.zpool will be skipped for pools:
+          # {{ fzfs_pools | intersect(pool_status_names) }}
+          #
+          # Configure the skipped pools manually, if necessary.
+          # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    - name: "Pools: Manage ZFS pools."
+      when: item.key not in pool_status_names
+      community.general.zpool:
+        name: "{{ item.key }}"
+        vdevs: "{{ item.value.vdevs }}"
+        altroot: "{{ item.value.altroot | d(omit) }}"
+        disable_new_features: "{{ item.value.disable_new_features | d(omit) }}"
+        filesystem_properties: "{{ item.value.filesystem_properties | d(omit) }}"
+        force: "{{ item.value.force | d(omit) }}"
+        mountpoint: "{{ item.value.mountpoint | d(omit) }}"
+        pool_properties: "{{ item.value.pool_properties | d(omit) }}"
+        state: "{{ item.value.state | d(omit) }}"
+        temp_name: "{{ item.value.temp_name | d(omit) }}"
+      loop: "{{ fzfs_pools | dict2items }}"
+      loop_control:
+        label: "{{ item.key }}"
 
 # EOF
