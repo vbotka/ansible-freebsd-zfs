@@ -5,6 +5,14 @@ vbotka.freebsd_zfs 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.5
+=====
+
+Release Summary
+---------------
+Update pools.yml. Display warning when skipped not empty.
+
+
 2.7.4
 =====
 
