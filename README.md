@@ -93,6 +93,59 @@ be ignored. See the notes in the configuration file.
 shell> ansible-lint -c .ansible-lint.local
 ```
 
+## Known issues
+
+### community.general.zpool
+
+The module community.general.zpool can't create correct diff. For example,
+
+```yaml
+(Pdb) p vdev_layout_diff
+{'before': {'vdevs': [{'type': 'stripe', 'disks': ['/dev/ada2']}, {'type': 'stripe', 'disks': ['/dev/ada3']}]},
+ 'after': {'vdevs': [{'type': 'stripe', 'disks': ['/dev/ada2', '/dev/ada3']}]}}
+```
+
+This makes the module not idempotent. It crashes when running repeatedly. For example,
+
+```yaml
+failed: [srv.example.org] (item=iocage) =>
+    ansible_loop_var: item
+    changed: false
+    cmd: /sbin/zpool add iocage /dev/ada2 /dev/ada3
+    item:
+        key: iocage
+        value:
+            vdevs:
+            -   disks:
+                - /dev/ada2
+                - /dev/ada3
+    msg: |-
+        invalid vdev specification
+        use '-f' to override the following errors:
+        /dev/ada2 is part of active pool 'iocage'
+        /dev/ada3 is part of active pool 'iocage'
+    rc: 1
+    ...
+```
+
+Setting `force: true` doesn't help. At the moment, the only workaround is to skip the module if the
+pool already exists. You'll see a warning. For example,
+
+```
+TASK [vbotka.freebsd_zfs : Pools: WARNING | community.general.zpool skipped.] ****
+ok: [srv.example.org] =>
+    msg: |-
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        # WARNING:
+        #
+        # The module community.general.zpool is not idempotent. It crashes
+        # when running repeatedly. Because of the poor quality, the module
+        # community.general.zpool will be skipped for pools:
+        # ['iocage']
+        #
+        # Configure the skipped pools manually, if necessary.
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
 
 ## References
 
