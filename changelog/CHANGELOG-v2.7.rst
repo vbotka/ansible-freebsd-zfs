@@ -10,6 +10,15 @@ vbotka.freebsd_zfs 2.7 Release Notes
 
 Release Summary
 ---------------
+Make sysctl tuneables warning optional.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Add variable fzfs_sysctl_tuneables_warning (default=true)
+* Get zpool status also in check_mode
 
 
 2.7.5
