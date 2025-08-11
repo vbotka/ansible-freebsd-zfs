@@ -5,6 +5,22 @@ vbotka.freebsd_zfs 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.7
+=====
+Fix default fzfs_pools_required declaration.
+
+Release Summary
+---------------
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Use the variable fzfs_pools to create the list fzfs_pools_required
+* Add variable ansible_role_name to debug.yml
+
+
 2.7.6
 =====
 
