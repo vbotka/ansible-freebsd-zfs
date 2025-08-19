@@ -23,4 +23,10 @@ fzfs_pools_required: "{{ fzfs_pools.keys() | sort }}"
 fzfs_pools_present: "{{ ansible_zfs_pools | map(attribute='name') | sort }}"
 fzfs_pools_missing: "{{ fzfs_pools_required | difference(fzfs_pools_present) | sort }}"
 
+### LIB ###
+# Use vbotka.freebsd.lib in collection vbotka.freebsd
+fzfs_freebsd_postinstall:
+  vbotka.freebsd_zfs: vbotka.freebsd_postinstall
+  vbotka.freebsd.zfs: vbotka.freebsd.postinstall
+
 # EOF

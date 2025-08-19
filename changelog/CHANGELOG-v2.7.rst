@@ -10,12 +10,14 @@ vbotka.freebsd_zfs 2.7 Release Notes
 
 Release Summary
 ---------------
+In the collection vbotka.freebsd use vbotka.freebsd.postinstall
 
 Major Changes
 -------------
 
 Minor Changes
 -------------
+* Add dictionary fzfs_freebsd_postinstall
 
 
 2.7.7
