@@ -18,25 +18,10 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 ### Collections
 
 * community.general
-* vbotka.freebsd
 
 ### Roles
 
-* vbotka.freebsd.postinstall
-
-This role, included in the collection *vbotka.freebsd*, is needed to run tasks from
-*sysctl.yml*. Instead of the collection *vbotka.freebsd*, you can install and use the role
-*vbotka.freebsd_postinstall*. Edit the tasks *sysctl.yml*:
-
-```yaml
-  ansible.builtin.include_role:
-    name: vbotka.freebsd_postinstall
-```
-
-If you install and use
-[vbotka.freebsd_postinstall](https://galaxy.ansible.com/vbotka/freebsd_postinstall), remove
-*vbotka.freebsd* from the collections in *meta/main.yml*. Then, the role can be used without the
-collection *vbotka.freebsd*.
+* vbotka.freebsd_postinstall
 
 
 ## Variables
@@ -85,13 +70,13 @@ shell> ansible-playbook freebsd-zfs.yml
 
 ## Ansible lint
 
-Use the configuration file *.ansible-lint.local* when running
-*ansible-lint*. Some rules might be disabled and some warnings might
-be ignored. See the notes in the configuration file.
+Use the configuration file *.ansible-lint.local* when running *ansible-lint*. Some rules might be
+disabled and some warnings might be ignored. See the notes in the configuration file.
 
 ```bash
 shell> ansible-lint -c .ansible-lint.local
 ```
+
 
 ## Known issues
 
