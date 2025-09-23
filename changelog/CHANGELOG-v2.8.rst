@@ -5,6 +5,22 @@ vbotka.freebsd_zfs 2.8 Release Notes
 .. contents:: Topics
 
 
+2.8.1
+=====
+
+Release Summary
+---------------
+Fix lint errors.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Fix jinja[invalid][/]: Error rendering template: 'NoneType' object is not iterable.
+  See https://forum.ansible.com/t/type-grouptuple-is-unsupported-in-variable-storage/44513/8
+
+
 2.8.0
 =====
 
