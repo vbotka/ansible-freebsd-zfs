@@ -9,7 +9,8 @@
   when: fzfs_pools_sanity | bool
   vars:
     pool_status: "{{ out_zpool_status.stdout | d('') | community.general.jc('zpool-status') }}"
-    pool_status_names: "{{ dict(pool_status | community.general.json_query('[].[pool, config[].name]')) }}"
+    pool_status_names: "{{ dict(pool_status | community.general.json_query('[].[pool, config[].name]')
+                                            | map('list')) }}"
     pool_status_names_other: "{{ pool_status_names | dict2items
                                                    | rejectattr('key', 'in', fzfs_pools)
                                                    | map(attribute='value') }}"
@@ -108,7 +109,8 @@
 - name: Manage ZFS pools.
   vars:
     pool_status: "{{ out_zpool_status.stdout | d('') | community.general.jc('zpool-status') }}"
-    pool_status_names: "{{ dict(pool_status | community.general.json_query('[].[pool, config[].name]')) }}"
+    pool_status_names: "{{ dict(pool_status | community.general.json_query('[].[pool, config[].name]')
+                                            | map('list')) }}"
     skipped: "{{ fzfs_pools | intersect(pool_status_names) }}"
   block:
 
